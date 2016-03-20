@@ -1,7 +1,7 @@
  include <PRZutility.scad>
  include <X_utils.scad>
-// (c) Pierre ROUZEAU jan 2016 - CC  BY-SA
-// This plastic garden train "G" track bender is closely derived from the "oakbender" build in oak. This is one rare design which was usable at first print, however slightly improved since (to simplify supply).
+// (c) Pierre ROUZEAU march 2016 - CC  BY-SA
+// This plastic garden train "G" track bender is closely derived from the "oakbender" build in oak. 
 // Designed just for fun, to see how easier it could be built compared to oak building. 
 // bearings 608 (8x) and F688 (2x)
 // Wood screw, countersunk head, diam 5 x 30 (6x)
@@ -27,9 +27,9 @@ xpart=0; // neutralise demo
 
 BBspace = 80;
 BBspace2 = 60;
-trackWidth = 45;
+trackWidth = 45+2.8;
 BHt = 22;
-FaceHt = 10-3.5; // bearings shall clear a reduced track heught (code 250)
+FaceHt = 10-3.5; // bearings shall clear a reduced track height (code 250)
 TensHt = 9.5;
 TensOff = -9.5;
  
