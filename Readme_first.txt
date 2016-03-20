@@ -5,14 +5,16 @@ documentation licence cc BY-SA and GFDL 1.2
 Device and components design licence CERN OHL V1.2
 see http://rouzeau.net/GardenRailway
 
+ON HOLD - CENTRAL BAR REINFORCMENT NEEDED
+
 This plastic garden train "G" track bender is closely derived from the "oakbender" build in oak. 
 This is one rare design which was usable at first print, however slightly improved since (to simplify screw supply).
 Designed just for fun, to see how easier it could be built compared to oak building. 
 BOM:
 - bearings 608 (8x) and F688 (2x)
 - Wood screw, countersunk head, diam 5 x 30 (6x)
-- Medium washer M5 (6 x or 12x)
-- Screw M4x60, countersunk head (1x)
+- Medium washer M5 (10 x)
+- Screw M4x50, countersunk head (1x)
 - Butterfly nut M4 (1x)
 - Simple nut M4 (1x)
 - Bolt M8x80 (2x)
