@@ -93,7 +93,7 @@ module cuben (sx,sy,sz,x=0,y=0,z=0, center=false) { // same as mcube, but with c
     cube ([abs(sx),abs(sy),abs(sz)], center=center);
 }
 
-module cubex(xd,yd,zd,x=0,y=0,z=0, fh=0) { // centered on y anz z, not centered on x, negative extrusion possible
+module cubex (xd,yd,zd,x=0,y=0,z=0, fh=0) { // centered on y anz z, not centered on x, negative extrusion possible
   // fh is a coefficient for holeplay - default 0 for cubes
   if (fh==true) 
     echo ("cubex : change holeplay parameter to numeric");
@@ -103,7 +103,7 @@ module cubex(xd,yd,zd,x=0,y=0,z=0, fh=0) { // centered on y anz z, not centered 
     cube ([abs(xd),abs(yd)+fh*holeplay,abs(zd)+fh*holeplay]);
 }
 
-module cubey(xd,yd,zd,x=0,y=0,z=0, fh=0) { // centered on x anz z, not centered on y
+module cubey (xd,yd,zd,x=0,y=0,z=0, fh=0) { // centered on x anz z, not centered on y
   // fh is a coefficient for holeplay - default 0 for cubes
   if (fh==true) 
     echo ("cubey : change holeplay parameter to numeric");  
@@ -113,7 +113,7 @@ module cubey(xd,yd,zd,x=0,y=0,z=0, fh=0) { // centered on x anz z, not centered 
     cube ([abs(xd)+fh*holeplay,abs(yd),abs(zd)+fh*holeplay]);
 }
 
-module cubez(xd,yd,zd,x=0,y=0,z=0, fh=0) { // centered on x anz y, not centered on z
+module cubez (xd,yd,zd,x=0,y=0,z=0, fh=0) { // centered on x anz y, not centered on z
   // fh is a coefficient for holeplay  - default 0 for cubes
   if (fh==true) 
     echo ("cubez : change holeplay parameter to numeric");
@@ -244,7 +244,7 @@ module tenonzx (slotlength, interval, totlength, thkplate, height) { //creates s
 }
 
 // As slots are full through holes, no depth defined 
-module slotxy(slotlength, interval, totlength, thkplate,x=0,y=0) {
+module slotxy (slotlength, interval, totlength, thkplate,x=0,y=0) {
   sll= abs(slotlength);
   cfl= (totlength<0)?-1:1;
   mvt= (thkplate<0)?thkplate-holeplay/2:-holeplay/2;
@@ -262,7 +262,7 @@ module slotxy(slotlength, interval, totlength, thkplate,x=0,y=0) {
   }
 }
 
-module slotzx(slotlength, interval, totlength, thkplate,z=0,x=0) {
+module slotzx (slotlength, interval, totlength, thkplate,z=0,x=0) {
   //-- not checked --- ???
   sll= abs(slotlength);
   cfl= (totlength<0)?-1:1;
@@ -397,7 +397,7 @@ module cconez (diam1, diam2, ht, htcyl=-1, x=0,y=0,z=0,div=$fn, fh=1) {
   cylz (diam1, abs(htcyl)*sign(ht)*sign(htcyl),x,y,z, div, fh);
 }
 
-module filletx(rad, lg, x=0,y=0,z=0) {
+module filletx (rad, lg, x=0,y=0,z=0) {
   mv = (rad<0)?rad+0.02:0;
   mv2 = (rad<0)?rad:0;
   mlg = (lg<0)?lg:0;  
@@ -408,7 +408,7 @@ module filletx(rad, lg, x=0,y=0,z=0) {
     } 
 } 
 
-module fillety(rad, lg, x=0,y=0,z=0) {
+module fillety (rad, lg, x=0,y=0,z=0) {
   mv = (rad<0)?rad+0.02:0;
   mv2 = (rad<0)?rad:0;
   mlg = (lg<0)?lg:0;  
@@ -419,7 +419,7 @@ module fillety(rad, lg, x=0,y=0,z=0) {
     } 
 }
 
-module filletz(rad, lg, x=0,y=0,z=0) {
+module filletz (rad, lg, x=0,y=0,z=0) {
   mv = (rad<0)?rad+0.02:0;
   mv2 = (rad<0)?rad:0;
   mlg = (lg<0)?lg:0;  
@@ -515,14 +515,14 @@ module boltz (d,l,x=0,y=0,z=0,type="HEX", washer) {
 
 //--- Text display --------------------------------------------------------------
 
-module textz(txt,size,h,bold,x=0,y=0,z=0, hal="left", val ="baseline") { // position text normal to z axis
+module textz (txt,size,h,bold,x=0,y=0,z=0, hal="left", val ="baseline") { // position text normal to z axis
   a =(h<0)?180:0;
   st=(bold)? "Liberation Sans:style=Bold":"Liberation Sans";
   tsl (x,y,z) rot (a,0,0)
       linear_extrude(height = abs(h)) text (str(txt), size, font=st, halign=hal, valign=val);
 }
 
-module textx(txt,size,h,bold,x=0,y=0,z=0, hal="left", val ="baseline") { // position text normal to x axis
+module textx (txt,size,h,bold,x=0,y=0,z=0, hal="left", val ="baseline") { // position text normal to x axis
   a =(h<0)?-90:90;
   tsl (x,y,z) rot (90,0,a)
     textz(txt,size,abs(h),bold,0,0,0,hal,val);
@@ -656,10 +656,12 @@ module profile_T (width, height, thickness, length) { // length could be negativ
 //aliases
 module u() {union() children();} // union alias
  
-module diff() {  // difference alias
-  difference() {children(0); for(i=[1:$children-1]) children(i);}  
+module diff () {  // difference alias
+  difference() {
+    children(0); 
+    if ($children>1) for(i=[1:$children-1]) children(i);
+  }  
 }
-
 
 //rotation and translations without brackets - 
 module rot  (x,y=0,z=0) {rotate([x,y,z]) children();}
@@ -672,28 +674,28 @@ module rot120 (a=0) {
   for(i=[0,120,240]) rotate([0,0,i+a]) children();
 }
 
-module mirrorx(mi=true) { // parameter helps in conditional mirroring
+module mirrorx (mi=true) { // parameter helps in conditional mirroring
   mm = (mi)?1:0;
   mirror([mm,0,0]) children();
 }
-module mirrory(mi=true) {
+module mirrory (mi=true) {
   mm = (mi)?1:0;
   mirror([0,mm,0]) children();
 }
-module mirrorz(mi=true) {
+module mirrorz (mi=true) {
   mm = (mi)?1:0;
   mirror([0,0,mm]) children();
 }
 
-module dmirrorx(dup=true) { // duplicate and mirror
+module dmirrorx (dup=true) { // duplicate and mirror
   if (dup) children();
   mirror ([1,0,0]) children();  
 }
-module dmirrory(dup=true) {
+module dmirrory (dup=true) {
   if (dup) children();
   mirror ([0,1,0]) children();
 }
-module dmirrorz(dup=true) {
+module dmirrorz (dup=true) {
   if (dup) children();
   mirror ([0,0,1]) children();
 }
@@ -744,17 +746,17 @@ module lduplz (interval, length, x=0,y=0,z=0) {
   for (i=[0:nb]) tsl(x,y,z+i*sp) children();
 }
 
-module drotz(angle, nb=1, initial=0) { // polar duplication rotating around Z axis
+module drotz (angle, nb=1, initial=0) { // polar duplication rotating around Z axis
   for (i=[0:nb])
     rotz (angle*i+initial) children();
 }
 
-module droty(angle, nb=1, initial=0) {
+module droty (angle, nb=1, initial=0) {
   for (i=[0:nb])
     rot (0,angle*i+initial) children();
 }
 
-module drotx(angle, nb=1, initial=0) {
+module drotx (angle, nb=1, initial=0) {
   for (i=[0:nb])
     rot (angle*i+initial) children();
 }
@@ -791,7 +793,7 @@ module quadz (x,y,z=0) { // create four blocs at -x/-x and +y/-y (mirrored)
 //== PART IV : MISCELLANEOUS ===================================================
 
 //-- Miscellaneous Modules ---------------
-module dome(d,ht,x,y,z){ // origin base of dome - rise in 'z' axis
+module dome (d,ht,x,y,z){ // origin base of dome - rise in 'z' axis
   mv = (z==undef)?0:z;
   Sph_Rd = (ht*ht + d*d/4) / (2*ht);
   translate([x,y,-Sph_Rd+ht+mv])
@@ -802,7 +804,7 @@ module dome(d,ht,x,y,z){ // origin base of dome - rise in 'z' axis
     }
 }
 
-module echo_camera() { // Echo camera variables on console
+module echo_camera () { // Echo camera variables on console
   echo ("Camera distance: ",$vpd); 
   echo ("Camera translation vector: ",$vpt);  
   echo ("Camera rotation vector: ",$vpr);
