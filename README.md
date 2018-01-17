@@ -1,7 +1,8 @@
-This plastic garden train "G" track bender is closely derived from the "oakbender" build in oak. 
-This is one rare design which was usable at first print, however slightly improved and reinforced since (to simplify screw supply).
-Designed just for fun, to see how easier it could be built compared to oak building. 
-![Top view of the Garden train track bender](Garden_train_G_track_bender_bottom_track.jpg?raw=true "Top view of the Garden train track bender")
+This plastic garden train "G" track bender is closely derived from the "oakbender" build in oak. <br>
+This is one rare design which was usable at first print, however slightly improved and reinforced since (to simplify screw supply).<br>
+Designed just for fun, to see how easier it could be built compared to oak building.<br> 
+<img src="Garden_train_G_track_bender_bottom_track.jpg" alt="op view of the Garden train track bender" width ="580">
+
 BOM:
 - bearings 608 (8x) and F688 (2x)
 - Wood screw, countersunk head, diam 5x40 (6x)
