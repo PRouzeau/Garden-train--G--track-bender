@@ -16,4 +16,3 @@ Bill of Material
 - small washers M4 (4x)
 - medium washer M4 (2x)
 - Small washer M8 (4 x)
-
