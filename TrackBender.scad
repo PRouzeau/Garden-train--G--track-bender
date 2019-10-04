@@ -1,6 +1,6 @@
  include <Z_library.scad>
  include <X_utils.scad>
-// (c) Pierre ROUZEAU march 2016-2018 - CC  BY-SA
+// (c) Pierre ROUZEAU march 2016-2019 - CC  BY-SA 4.0
 // This 3D printed garden train "G" track bender is closely derived from the "oakbender" build in oak. 
 // Designed just for fun, to see how easier it could be built compared to oak building. 
 // bearings 608 (8x) and F688 (2x)
@@ -24,19 +24,18 @@
 // Printing time 3.5h to 6h depending your printer speed
 // plastic weight: 95g (with above parameters and PETG - lighter in ABS)
 // let the parts cool down on the bed before removing it.
+//The version here is reinforced compared to the prototype to increase stiffness.
 // weight equipped with bearings : 300 g (in PETG)
 //rev. Jan 2018: Adapt to customizer, Camera view, create STL for parts
+//rev oct 2019: autozoom
 /*
 CUSTOMIZER -------------------------------
  It may help to use OpenSCAD customizer
-  Customizer is experimental feature, so you need to select:
-  - Menu [Edit][Preferences][Features], tick [Customizer]
   - Menu [View] Untick [Hide customizer]-
  
- You shall use the last snapshot of OpenSCAD for proper operation of Customizer.  Minimal version: Snapshot 02 January 2018.  On Mac the version 23 Dec 2017 will probably work. Some bugs on included files. 
-  http://www.openscad.org/downloads.html#snapshots
- 
- Please note that there are bugs in customizer and some options may not work, in this case you shall do direct modifications in the editor.
+ You shall use a recent OpenSCAD version for proper operation of Customizer.  Minimal version: 2019.05
+ More recent snapshots version are generally quite reliable:
+http://www.openscad.org/downloads.html#snapshots
 */  
 
 /* [Hidden] */
@@ -44,17 +43,15 @@ xpart=0; // neutralise demo
 diamNut4 = 8.1;
 FaceHt = 10-3.5; // bearings shall clear a reduced track height (code 250)
 
-/*[Camera view] ---------------------------- */
-//Deactivate if you want to left view as it is when previewing
-Force_view_position = true;
-Camera_distance = 300;
-//Camera rotation vector
-camVpr = [65,0,30];
-//Camera translation vector
-camVpt = [28,0,20];
-$vpd=Force_view_position?Camera_distance:undef;  // camera distance: work only if set outside a module
-$vpr=Force_view_position?camVpr:undef; // camera rotation
-$vpt=Force_view_position?camVpt:undef; //camera translation  
+/*[Camera view] -------------------- */
+//Activate to impose default camera view
+Force_view_position = false;
+//force camera position at first preview
+Cimp = Force_view_position ||$vpr==[55,0,25]; 
+
+$vpd=Cimp?480:$vpd;  // camera distance: work only if set outside a module
+$vpr=Cimp?[65,0,30]:$vpr; // camera rotation
+$vpt=Cimp?[28,0,20]:$vpt; //camera translation  
 
 /* [General] */
 part=0;  // [0:View ensemble, 1:Frame, 2:Push bar top, 3:Push bar bottom, 4:ThumbWheel, 9:Full part set]
@@ -139,7 +136,7 @@ module frame () {
       duplx(wheel_track)        
         cylz (-3.9,111, 0,BBspace/2);
       cylx(-8,222, -11,BBspace2/2,FaceHt); 
-      cylx(23.5,-8, -11+wheel_track,BBspace2/2,FaceHt);  
+      cylx(22.3,-8, -11+wheel_track,BBspace2/2,FaceHt, 32);  
     }  
     cylx (4.2,30,wheel_track+10, 0,TensHt); 
     tsl (5) scale (1.02) push(wheel_track-0.8,false);
