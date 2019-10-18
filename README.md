@@ -16,3 +16,8 @@ Bill of Material
 - small washers M4 (4x)
 - medium washer M4 (2x)
 - Small washer M8 (4 x)
+
+To install OpenSCAD applications and models, see http://rouzeau.net/Print3D/OpenSCADApplications
+
+Pour installer les applications et modèles OpenSCAD, voir  http://rouzeau.net/OpenSCAD/Applications
+
